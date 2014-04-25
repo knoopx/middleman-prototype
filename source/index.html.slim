@@ -1,0 +1,15 @@
+doctype html
+html ng-app="app"
+  head
+    meta charset="utf-8"
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"
+
+    title Application
+    = javascript_include_tag "application"
+    = stylesheet_link_tag "application"
+    - Pathname.glob("#{Middleman::Application.root}/source/templates/**/*.slim").each do |path|
+      script type="text/ng-template" id="#{path.relative_path_from(Pathname.new("#{Middleman::Application.root}/source/templates")).sub_ext("")}"
+        = render_individual_file(path)
+
+  body
